@@ -8,7 +8,7 @@ import type {
 } from "@/lib/payments/payment-types";
 
 function isMockEnabled() {
-  return process.env.UAIPAG_MOCK === "true" && process.env.NODE_ENV !== "production";
+  return process.env.UAIPAG_MOCK === "true";
 }
 
 export async function createUaiPagPixCharge(
