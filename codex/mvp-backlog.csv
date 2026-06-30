@@ -1,0 +1,17 @@
+Epic,Task,Priority,Owner,Status,Acceptance Criteria
+Foundation,Criar projeto Next.js,P0,Codex,Todo,Projeto abre localmente
+Foundation,Configurar Prisma/PostgreSQL,P0,Codex,Todo,Migration e generate funcionando
+Catalog,Implementar schema Product,P0,Codex,Todo,Produtos persistem no banco
+Catalog,Criar seed inicial,P0,Codex,Todo,3 produtos e admin criados
+Catalog,Criar loja e produto,P0,Codex/Claude,Todo,/loja e /produto/[slug] funcionando
+Cart,Criar carrinho local,P0,Codex/Claude,Todo,Adicionar/remover/alterar quantidade
+Checkout,Criar POST /api/checkout,P0,Codex,Todo,Pedido criado e total recalculado no backend
+Payments,Criar adapter UaiPag,P0,Codex,Todo,Mock local funcional e TODOs UaiPag reais
+Payments,Criar tela PIX,P0,Codex/Claude,Todo,QR e copia/cola visíveis
+Payments,Criar webhook idempotente,P0,Codex,Todo,Webhook duplicado não duplica baixa de estoque
+Admin,Criar login admin,P0,Codex,Todo,/admin protegido
+Admin,CRUD produtos,P0,Codex/Claude,Todo,Admin cria/edita/arquiva produtos
+Admin,Listar pedidos,P0,Codex/Claude,Todo,Admin vê pedidos e status
+SEO,Criar políticas,P1,Claude/Codex,Todo,Páginas publicadas
+SEO,Metadata e sitemap,P1,Codex,Todo,Sitemap e metadata gerados
+QA,Testar fluxo completo,P0,Codex,Todo,Compra PIX mock confirma pedido

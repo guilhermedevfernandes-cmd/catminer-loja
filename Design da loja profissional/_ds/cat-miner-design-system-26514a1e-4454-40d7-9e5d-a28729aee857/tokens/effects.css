@@ -1,0 +1,43 @@
+/* ============================================================
+   Cat Miner — Elevation, Gradients, Effects
+   Soft, diffuse shadows. Signature orange→gold gradient.
+   A warm orange glow for primary CTAs; a faint lavender ambient
+   glow sits beneath the brand's 3D squircle icons.
+   ============================================================ */
+
+:root {
+  /* -- Shadows (light surfaces) --------------------------- */
+  --shadow-xs:  0 1px 2px rgba(14, 17, 24, 0.06);
+  --shadow-sm:  0 2px 6px rgba(14, 17, 24, 0.07);
+  --shadow-md:  0 6px 18px rgba(14, 17, 24, 0.09);
+  --shadow-lg:  0 16px 38px rgba(14, 17, 24, 0.12);
+  --shadow-xl:  0 28px 64px rgba(14, 17, 24, 0.16);
+  /* on navy surfaces, shadow reads as deeper black */
+  --shadow-dark: 0 20px 50px rgba(0, 0, 0, 0.45);
+
+  /* -- Brand glows ---------------------------------------- */
+  --glow-orange:    0 10px 30px -6px color-mix(in srgb, var(--orange-500) 55%, transparent);  /* @kind shadow */
+  --glow-orange-sm: 0 6px 16px -4px color-mix(in srgb, var(--orange-500) 50%, transparent);   /* @kind shadow */
+  /* lavender pool beneath the brand's 3D squircle icons */
+  --glow-ambient:   0 24px 60px -10px color-mix(in srgb, #7C6BFF 30%, transparent);           /* @kind shadow */
+
+  /* -- Inner / focus -------------------------------------- */
+  --inset-hairline: inset 0 0 0 1px var(--border);   /* @kind shadow */
+  --focus-shadow:   0 0 0 4px var(--primary-ring);   /* @kind shadow */
+
+  /* -- Signature gradients -------------------------------- */
+  --gradient-brand:    linear-gradient(135deg, var(--orange-500) 0%, var(--gold-400) 100%);  /* @kind color */
+  --gradient-brand-br: linear-gradient(135deg, var(--orange-600) 0%, var(--orange-500) 45%, var(--gold-400) 100%);  /* @kind color */
+  /* the glossy 3D squircle fill */
+  --gradient-ember:    linear-gradient(180deg, var(--orange-400) 0%, var(--gold-400) 60%, #FFFFFF 140%);  /* @kind color */
+  --gradient-night:    radial-gradient(120% 120% at 50% 0%, var(--navy-700) 0%, var(--navy-900) 55%, var(--navy-950) 100%);  /* @kind color */
+  --gradient-night-orange: radial-gradient(90% 120% at 80% 0%, color-mix(in srgb, var(--orange-500) 30%, transparent) 0%, transparent 55%), var(--gradient-night);  /* @kind color */
+  --gradient-hairline: linear-gradient(90deg, transparent, var(--border-strong), transparent);  /* @kind color */
+
+  /* -- Blur (glass panels on dark hero) ------------------- */
+  --blur-sm: blur(6px);   /* @kind other */
+  --blur-md: blur(14px);  /* @kind other */
+  --blur-lg: blur(28px);  /* @kind other */
+  --glass-light:  color-mix(in srgb, var(--white) 8%, transparent);   /* @kind color */
+  --glass-border: color-mix(in srgb, var(--white) 16%, transparent);  /* @kind color */
+}

@@ -1,0 +1,137 @@
+/* ============================================================
+   Cat Miner — Color Tokens
+   Brand: Bitcoin-orange + midnight navy + warm neutrals.
+   Sampled from the live brand (logo #FC7800, gold gradient
+   #FFB020, navy glyph ~#16224A, dark hero #0F1430).
+   Base palette first, then semantic aliases (light default),
+   then a dark surface scope used for hero / footer / navy panels.
+   ============================================================ */
+
+:root {
+  /* -- Brand orange (primary) ----------------------------- */
+  --orange-50:  #FFF4EA;
+  --orange-100: #FFE6CF;
+  --orange-200: #FFC894;
+  --orange-300: #FFA754;
+  --orange-400: #FC8A1E;
+  --orange-500: #FC7800;   /* core brand — the logo orange */
+  --orange-600: #E36A00;   /* hover */
+  --orange-700: #C25800;   /* press */
+  --orange-800: #964400;
+  --orange-900: #6E3200;
+
+  /* -- Amber / gold (gradient terminal, highlights) ------- */
+  --gold-300: #FFD27A;
+  --gold-400: #FFB020;
+  --gold-500: #F79A0C;
+
+  /* -- Midnight navy (secondary, dark surfaces) ----------- */
+  --navy-950: #070A18;
+  --navy-900: #0B0F22;
+  --navy-800: #121734;
+  --navy-700: #1B2249;
+  --navy-600: #283163;
+  --navy-500: #3A4683;
+  --navy-400: #5C68A8;
+
+  /* -- Neutrals (cool-warm gray ramp) --------------------- */
+  --white:    #FFFFFF;
+  --gray-50:  #F7F8FA;
+  --gray-100: #EEF0F4;
+  --gray-200: #E0E3EB;
+  --gray-300: #CBD0DB;
+  --gray-400: #A2AAB9;
+  --gray-500: #757E90;
+  --gray-600: #545C6E;
+  --gray-700: #3B4252;
+  --gray-800: #262B37;
+  --gray-900: #14181F;
+  --ink:      #0E1118;   /* near-black page text */
+
+  /* -- Semantic hues -------------------------------------- */
+  --green-500: #16B879;  /* profit / rentabilidade — core to the brand */
+  --green-600: #0E9D66;
+  --green-50:  #E5F7EF;
+  --red-500:   #E5484D;
+  --red-50:    #FCEBEC;
+  --blue-500:  #2C7DD6;  /* info / links (echoes the mascot's shirt) */
+  --blue-50:   #E9F1FB;
+
+  /* ===========================================================
+     SEMANTIC ALIASES — light surfaces (default)
+     =========================================================== */
+  --bg-page:        var(--gray-50);
+  --bg-subtle:      var(--gray-100);
+  --surface:        var(--white);
+  --surface-raised: var(--white);
+  --surface-sunken: var(--gray-50);
+  --surface-inverse:var(--navy-900);
+
+  --text-strong:    var(--ink);
+  --text:           #1E2330;
+  --text-muted:     var(--gray-500);
+  --text-subtle:    var(--gray-400);
+  --text-inverse:   var(--white);
+  --text-on-brand:  var(--white);
+
+  --border:         var(--gray-200);
+  --border-strong:  var(--gray-300);
+  --border-subtle:  var(--gray-100);
+
+  --primary:        var(--orange-500);
+  --primary-hover:  var(--orange-600);
+  --primary-press:  var(--orange-700);
+  --primary-soft:   var(--orange-50);
+  --primary-contrast: var(--white);
+  --primary-ring:   color-mix(in srgb, var(--orange-500) 38%, transparent);
+
+  --accent:         var(--gold-400);
+  --secondary:      var(--navy-800);   /* dark/navy buttons & panels */
+  --secondary-hover:var(--navy-700);
+
+  --profit:         var(--green-500);  /* daily/monthly earnings figures */
+  --profit-soft:    var(--green-50);
+  --success:        var(--green-500);
+  --success-soft:   var(--green-50);
+  --danger:         var(--red-500);
+  --danger-soft:    var(--red-50);
+  --info:           var(--blue-500);
+  --info-soft:      var(--blue-50);
+
+  --focus-ring:     var(--orange-500);
+  --overlay:        color-mix(in srgb, var(--navy-950) 62%, transparent);
+}
+
+/* ===========================================================
+   DARK SURFACE SCOPE
+   Apply to hero, footer, navy feature panels, dark cards.
+   Orange stays vivid on navy; text flips to light.
+   =========================================================== */
+[data-theme="dark"],
+.surface-dark {
+  --bg-page:        var(--navy-900);
+  --bg-subtle:      var(--navy-800);
+  --surface:        var(--navy-800);
+  --surface-raised: var(--navy-700);
+  --surface-sunken: var(--navy-950);
+  --surface-inverse:var(--white);
+
+  --text-strong:    var(--white);
+  --text:           #E7E9F2;
+  --text-muted:     #97A0BC;
+  --text-subtle:    #6B7497;
+  --text-inverse:   var(--ink);
+
+  --border:         color-mix(in srgb, var(--white) 12%, transparent);
+  --border-strong:  color-mix(in srgb, var(--white) 22%, transparent);
+  --border-subtle:  color-mix(in srgb, var(--white) 7%, transparent);
+
+  --primary-soft:   color-mix(in srgb, var(--orange-500) 16%, transparent);
+  --secondary:      var(--white);
+  --secondary-hover:var(--gray-100);
+
+  --profit-soft:    color-mix(in srgb, var(--green-500) 18%, transparent);
+  --success-soft:   color-mix(in srgb, var(--green-500) 18%, transparent);
+  --danger-soft:    color-mix(in srgb, var(--red-500) 20%, transparent);
+  --info-soft:      color-mix(in srgb, var(--blue-500) 20%, transparent);
+}

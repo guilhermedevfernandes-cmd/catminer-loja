@@ -1,0 +1,108 @@
+{
+  "project": "catminer-ecommerce-mvp",
+  "version": "1.0.0",
+  "phases": [
+    {
+      "id": "phase-01-foundation",
+      "title": "Fundação do projeto",
+      "tasks": [
+        "Criar projeto Next.js com TypeScript, Tailwind e App Router",
+        "Instalar dependências principais",
+        "Inicializar shadcn/ui",
+        "Criar estrutura de pastas",
+        "Configurar Prisma",
+        "Criar .env.example",
+        "Criar lib/db.ts"
+      ],
+      "acceptance": [
+        "npm run build passa",
+        "Prisma generate passa",
+        "App abre localmente"
+      ]
+    },
+    {
+      "id": "phase-02-database-catalog",
+      "title": "Banco, seed e catálogo",
+      "tasks": [
+        "Implementar schema Prisma",
+        "Criar migration",
+        "Criar seed com admin e produtos",
+        "Criar APIs públicas de produtos",
+        "Criar página loja",
+        "Criar página produto"
+      ],
+      "acceptance": [
+        "Produtos aparecem em /loja",
+        "Página /produto/[slug] funciona"
+      ]
+    },
+    {
+      "id": "phase-03-cart-checkout",
+      "title": "Carrinho e checkout",
+      "tasks": [
+        "Criar store de carrinho",
+        "Criar página carrinho",
+        "Criar checkout form",
+        "Criar validators Zod",
+        "Criar POST /api/checkout",
+        "Recalcular total no backend",
+        "Criar pedido e itens"
+      ],
+      "acceptance": [
+        "Pedido é criado com status AWAITING_PAYMENT",
+        "Preço não vem do frontend como fonte de verdade"
+      ]
+    },
+    {
+      "id": "phase-04-uaipag",
+      "title": "UaiPag e PIX",
+      "tasks": [
+        "Criar adapter UaiPag",
+        "Criar mock local",
+        "Criar endpoint create-pix",
+        "Criar tela Pix",
+        "Criar status polling",
+        "Criar webhook",
+        "Implementar idempotência",
+        "Baixar estoque após pagamento"
+      ],
+      "acceptance": [
+        "Webhook mock marca pedido como pago",
+        "Webhook duplicado não baixa estoque duas vezes"
+      ]
+    },
+    {
+      "id": "phase-05-admin",
+      "title": "Painel admin",
+      "tasks": [
+        "Criar login admin",
+        "Proteger rotas admin",
+        "Criar dashboard",
+        "Criar CRUD produtos",
+        "Criar lista de pedidos",
+        "Criar detalhe de pedido"
+      ],
+      "acceptance": [
+        "Admin logado cria produto",
+        "Admin visualiza pedido pago"
+      ]
+    },
+    {
+      "id": "phase-06-content-seo-qa",
+      "title": "Conteúdo, SEO e QA",
+      "tasks": [
+        "Criar páginas institucionais",
+        "Criar políticas",
+        "Configurar metadata",
+        "Configurar sitemap e robots",
+        "Preparar analytics",
+        "Rodar QA completo"
+      ],
+      "acceptance": [
+        "Build passa",
+        "Fluxo completo testado",
+        "Mobile validado"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cat-miner-design-system-26514a1e-4454-40d7-9e5d-a28729aee857/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cat-miner-design-system-26514a1e-4454-40d7-9e5d-a28729aee857/tokens/colors.css">
+<link rel="stylesheet" href="_ds/cat-miner-design-system-26514a1e-4454-40d7-9e5d-a28729aee857/tokens/typography.css">
+<link rel="stylesheet" href="_ds/cat-miner-design-system-26514a1e-4454-40d7-9e5d-a28729aee857/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/cat-miner-design-system-26514a1e-4454-40d7-9e5d-a28729aee857/tokens/effects.css">
+<link rel="stylesheet" href="_ds/cat-miner-design-system-26514a1e-4454-40d7-9e5d-a28729aee857/tokens/motion.css">
+<link rel="stylesheet" href="_ds/cat-miner-design-system-26514a1e-4454-40d7-9e5d-a28729aee857/tokens/base.css">
+<link rel="stylesheet" href="_ds/cat-miner-design-system-26514a1e-4454-40d7-9e5d-a28729aee857/styles.css">
+<script src="_ds/cat-miner-design-system-26514a1e-4454-40d7-9e5d-a28729aee857/_ds_bundle.js"></script>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--navy-950);color:var(--text);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+.scroll::-webkit-scrollbar{width:10px;height:10px}
+.scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:99px;border:2px solid transparent;background-clip:padding-box}
+.scroll::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.2);background-clip:padding-box}
+.device .screen{height:100vh;position:relative;overflow:hidden;background:var(--navy-950);container-type:inline-size}
+.show-mobile{display:none!important}
+@container (max-width:840px){
+  .hide-mobile{display:none!important}
+  .show-mobile{display:flex!important}
+  .hero-grid{grid-template-columns:1fr!important}
+  .cat-grid{grid-template-columns:1fr!important}
+  .prod-grid{grid-template-columns:1fr!important}
+  .prod-gallery{position:static!important}
+  .filters{position:absolute!important;top:0;left:0;bottom:0;width:310px;max-width:88%;transform:translateX(-112%);transition:transform .3s var(--ease-out);z-index:70;background:var(--navy-900);border-right:1px solid var(--border);padding:18px 16px 30px!important;overflow-y:auto;box-shadow:0 0 70px rgba(0,0,0,.6)}
+  .filters.is-open{transform:translateX(0)}
+}
+.device.is-mobile{display:flex;justify-content:center;padding:14px 0}
+.device.is-mobile .screen{width:404px;max-width:96vw;height:min(880px,calc(100vh - 28px));border-radius:46px;border:11px solid #04060d;box-shadow:0 40px 90px -20px rgba(0,0,0,.7),0 0 0 2px rgba(255,255,255,.05) inset}
+.navlink{position:relative}
+.navlink::after{content:"";position:absolute;left:14px;right:14px;bottom:5px;height:2px;border-radius:2px;background:var(--gradient-brand);transform:scaleX(0);transform-origin:left;transition:transform .2s var(--ease-out)}
+.navlink:hover::after,.navlink.is-active::after{transform:scaleX(1)}
+.card{transition:transform .26s var(--ease-out),box-shadow .26s var(--ease-out),border-color .26s var(--ease-out)}
+.card:hover{transform:translateY(-5px);box-shadow:0 28px 60px -24px rgba(0,0,0,.8);border-color:var(--orange-300)!important}
+.card:hover .card__img{transform:scale(1.05)}
+.card__img{transition:transform .5s var(--ease-out)}
+.fbrand:hover .fbrand__box,.fbrand.is-on .fbrand__box{border-color:var(--orange-400)}
+@keyframes pop{0%{transform:scale(.8);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes toastin{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+.toast{animation:toastin .3s var(--ease-out)}
+.cartdot{animation:pop .3s var(--ease-spring)}
+.cartov{position:absolute;inset:0;z-index:200;background:rgba(4,6,13,0);pointer-events:none;transition:background .3s var(--ease-out)}
+.cartov.is-open{background:rgba(4,6,13,.66);pointer-events:auto}
+.cartpanel{position:absolute;top:0;right:0;bottom:0;width:430px;max-width:92%;background:var(--navy-900);border-left:1px solid var(--border);box-shadow:-30px 0 70px rgba(0,0,0,.5);transform:translateX(101%);transition:transform .34s var(--ease-out);display:flex;flex-direction:column}
+.cartov.is-open .cartpanel{transform:translateX(0)}
+.cartscroll::-webkit-scrollbar{width:8px}
+.cartscroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:99px}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.82)}}
+.statusdot{animation:pulse 1.4s var(--ease-out) infinite}
+.acc-orange{--gradient-brand:linear-gradient(135deg,var(--orange-600) 0%,var(--orange-500) 100%)}
+.acc-gold{--gradient-brand:linear-gradient(135deg,var(--gold-500) 0%,var(--gold-400) 100%)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</helmet>
+<div class="root {{ accentCls }}" data-theme="dark" style="position:relative">
+  <div class="device {{ deviceCls }}">
+    <div class="screen">
+      <div class="scroll" style="height:100%;overflow-y:auto;overflow-x:hidden">
+
+        <header style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px var(--gutter);background:color-mix(in srgb,var(--navy-950) 82%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-subtle)">
+          <button onClick="{{ goCatalog }}" style="display:inline-flex;align-items:center;gap:11px;background:none;border:0;cursor:pointer;padding:0">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:12px;background:var(--gradient-brand);box-shadow:var(--glow-orange-sm)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span>
+            <span style="font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1;letter-spacing:-.01em"><span style="color:#fff">cat</span> <span style="color:var(--orange-500)">MINER</span></span>
+          </button>
+          <nav class="hide-mobile" style="display:flex;align-items:center;gap:2px">
+            <a class="navlink is-active" href="#" style="padding:9px 14px;border-radius:99px;font-size:14px;font-weight:600;color:#fff;text-decoration:none">Loja</a>
+            <a class="navlink" href="#" style="padding:9px 14px;border-radius:99px;font-size:14px;font-weight:600;color:#C2C8E0;text-decoration:none">Como funciona</a>
+            <a class="navlink" href="#" style="padding:9px 14px;border-radius:99px;font-size:14px;font-weight:600;color:#C2C8E0;text-decoration:none">Sobre</a>
+            <a class="navlink" href="#" style="padding:9px 14px;border-radius:99px;font-size:14px;font-weight:600;color:#C2C8E0;text-decoration:none">Contato</a>
+          </nav>
+          <div style="display:flex;align-items:center;gap:10px">
+            <a class="hide-mobile" href="https://wa.me/5545998370750" target="_blank" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:99px;background:rgba(37,211,102,.12);border:1.5px solid rgba(37,211,102,.4);color:#3ee47e;font-weight:700;font-size:13.5px;text-decoration:none">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>Especialista</a>
+            <button onClick="{{ openCart }}" style="position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:var(--navy-700);border:1.5px solid var(--border);color:#fff;cursor:pointer">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+              <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ true }}"><span class="cartdot" key="{{ cartCount }}" style="position:absolute;top:-6px;right:-6px;min-width:21px;height:21px;padding:0 5px;display:flex;align-items:center;justify-content:center;border-radius:99px;background:var(--gradient-brand);color:#fff;font-family:var(--font-mono);font-weight:700;font-size:11px;box-shadow:0 0 0 2px var(--navy-950)">{{ cartCount }}</span></sc-if>
+            </button>
+          </div>
+        </header>
+
+        <main>
+          <sc-if value="{{ isCatalog }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <!-- HERO -->
+            <section style="position:relative;overflow:hidden;border-bottom:1px solid var(--border-subtle)">
+              <div style="position:absolute;inset:0;background-image:url('assets/warehouse.jpg');background-size:cover;background-position:center;opacity:.5"></div>
+              <div style="position:absolute;inset:0;background:radial-gradient(90% 130% at 88% -10%,color-mix(in srgb,var(--orange-500) 34%,transparent) 0%,transparent 52%),linear-gradient(180deg,color-mix(in srgb,var(--navy-950) 55%,transparent) 0%,var(--navy-950) 96%)"></div>
+              <div class="hero-grid" style="position:relative;max-width:var(--container-xl);margin:0 auto;padding:clamp(34px,5vw,64px) var(--gutter) 0;display:grid;grid-template-columns:1.5fr .9fr;gap:24px;align-items:end">
+                <div style="padding-bottom:clamp(28px,4vw,52px)">
+                  <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:99px;background:var(--glass-light);border:1px solid var(--glass-border);font-family:var(--font-mono);font-size:11.5px;font-weight:700;letter-spacing:.14em;color:var(--gold-300);text-transform:uppercase">Loja · ASICs revisados</div>
+                  <h1 style="font-family:var(--font-display);font-weight:700;font-size:clamp(2.1rem,4.8vw,3.4rem);line-height:1.04;letter-spacing:-.025em;color:#fff;margin:18px 0 0;text-wrap:balance">Os melhores equipamentos<br>para sua <span style="background:var(--gradient-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">mineração</span></h1>
+                  <p style="font-size:clamp(15px,1.6vw,17px);line-height:1.6;color:#AEB6D4;margin:16px 0 0;max-width:46ch">Equipamentos testados, suporte especializado e pagamento seguro via Pix. Garantia de 30 dias e entrega para todo o Brasil.</p>
+                  <div style="display:flex;align-items:center;gap:14px;margin-top:26px;flex-wrap:wrap">
+                    <div style="display:flex;align-items:center;gap:10px;height:52px;padding:0 16px 0 18px;min-width:280px;flex:1;max-width:420px;border-radius:99px;background:var(--navy-800);border:1.5px solid var(--border)">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#7A82A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                      <input value="{{ search }}" onChange="{{ setSearch }}" placeholder="Buscar por modelo, marca ou hashrate…" style="flex:1;min-width:0;background:none;border:0;outline:none;color:#fff;font-family:var(--font-sans);font-size:15px;font-weight:500"/>
+                    </div>
+                    <a href="#grid" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 24px;border-radius:99px;background:var(--gradient-brand);color:#fff;font-weight:700;font-size:15px;text-decoration:none;box-shadow:var(--glow-orange-sm);white-space:nowrap">Ver equipamentos</a>
+                  </div>
+                </div>
+                <sc-if value="{{ showMascot }}" hint-placeholder-val="{{ true }}"><div class="hide-mobile" style="position:relative;align-self:end;justify-self:center;min-height:1px">
+                  <img src="assets/about-tall.png" alt="Mascote Cat Miner segurando um ASIC" style="display:block;width:min(330px,28vw);height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.5))"/>
+                </div></sc-if>
+              </div>
+              <!-- selos -->
+              <div style="position:relative;border-top:1px solid var(--border-subtle);background:color-mix(in srgb,var(--navy-900) 70%,transparent)">
+                <div style="max-width:var(--container-xl);margin:0 auto;padding:14px var(--gutter);display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:space-between">
+                  <div style="display:flex;align-items:center;gap:9px;color:#C7CDE6;font-size:13.5px;font-weight:600"><span style="display:inline-flex;width:30px;height:30px;border-radius:9px;align-items:center;justify-content:center;background:color-mix(in srgb,var(--green-500) 16%,transparent);color:var(--green-500)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>Pagamento seguro via Pix</div>
+                  <div style="display:flex;align-items:center;gap:9px;color:#C7CDE6;font-size:13.5px;font-weight:600"><span style="display:inline-flex;width:30px;height:30px;border-radius:9px;align-items:center;justify-content:center;background:color-mix(in srgb,var(--gold-400) 18%,transparent);color:var(--gold-400)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.8 8 9 4.6-1.2 8-4 8-9V5z"/></svg></span>Garantia de 30 dias</div>
+                  <div style="display:flex;align-items:center;gap:9px;color:#C7CDE6;font-size:13.5px;font-weight:600"><span style="display:inline-flex;width:30px;height:30px;border-radius:9px;align-items:center;justify-content:center;background:var(--primary-soft);color:var(--orange-400)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg></span>Equipamento usado revisado</div>
+                  <div style="display:flex;align-items:center;gap:9px;color:#C7CDE6;font-size:13.5px;font-weight:600"><span style="display:inline-flex;width:30px;height:30px;border-radius:9px;align-items:center;justify-content:center;background:color-mix(in srgb,var(--blue-500) 20%,transparent);color:#5BA8F0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>Suporte especializado</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- CATALOG -->
+            <section id="grid" class="cat-grid" style="max-width:var(--container-xl);margin:0 auto;padding:clamp(26px,3.5vw,44px) var(--gutter) 64px;display:grid;grid-template-columns:264px 1fr;gap:clamp(20px,2.4vw,36px);align-items:start">
+              <!-- FILTERS -->
+              <sc-if value="{{ filtersOpen }}" hint-placeholder-val="{{ false }}"><div onClick="{{ closeFilters }}" class="show-mobile" style="position:absolute;inset:0;background:rgba(4,6,13,.62);z-index:65"></div></sc-if>
+              <aside class="filters {{ filtersCls }}" style="position:sticky;top:84px;display:flex;flex-direction:column;gap:18px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-family:var(--font-display);font-weight:700;font-size:16px;color:#fff;display:flex;align-items:center;gap:8px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--orange-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="1" x2="7" y1="14" y2="14"/><line x1="9" x2="15" y1="8" y2="8"/><line x1="17" x2="23" y1="16" y2="16"/></svg>Filtros</span>
+                  <div style="display:flex;align-items:center;gap:12px"><sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}"><button onClick="{{ clearFilters }}" style="background:none;border:0;color:var(--orange-400);font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--font-sans)">Limpar</button></sc-if><button class="show-mobile" onClick="{{ closeFilters }}" aria-label="Fechar filtros" style="align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--navy-700);color:#fff;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+                </div>
+
+                <div style="background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px">
+                  <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7E87AB;margin-bottom:12px">Marca</div>
+                  <div style="display:flex;flex-direction:column;gap:9px">
+                    <sc-for list="{{ brandOptions }}" as="b" hint-placeholder-count="2">
+                      <label class="fbrand {{ b.onCls }}" style="display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none">
+                        <span class="fbrand__box" style="display:inline-flex;align-items:center;justify-content:center;width:21px;height:21px;border-radius:7px;border:1.5px solid var(--border-strong);background:{{ b.boxBg }};transition:all .15s">{{ b.check }}</span>
+                        <span style="flex:1;font-size:14px;font-weight:600;color:{{ b.color }}">{{ b.label }}</span>
+                        <span style="font-family:var(--font-mono);font-size:12px;color:#6E76A0">{{ b.count }}</span>
+                        <input type="checkbox" checked="{{ b.on }}" onChange="{{ b.toggle }}" style="position:absolute;opacity:0;width:0;height:0"/>
+                      </label>
+                    </sc-for>
+                  </div>
+                </div>
+
+                <div style="background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7E87AB">Preço máx.</span><span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--gold-300)">{{ priceMaxLabel }}</span></div>
+                  <input type="range" min="3000" max="8000" step="100" value="{{ priceMax }}" onChange="{{ setPriceMax }}" style="width:100%;accent-color:var(--orange-500);cursor:pointer"/>
+                  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:#6E76A0;margin-top:4px"><span>R$ 3.000</span><span>R$ 8.000</span></div>
+                </div>
+
+                <div style="background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7E87AB">Hashrate mín.</span><span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--gold-300)">{{ hashMinLabel }}</span></div>
+                  <input type="range" min="0" max="120" step="5" value="{{ hashMin }}" onChange="{{ setHashMin }}" style="width:100%;accent-color:var(--orange-500);cursor:pointer"/>
+                  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:#6E76A0;margin-top:4px"><span>0 TH</span><span>120 TH</span></div>
+                </div>
+
+                <div style="background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px">
+                  <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7E87AB;margin-bottom:12px">Condição</div>
+                  <div style="display:flex;flex-direction:column;gap:9px">
+                    <sc-for list="{{ condOptions }}" as="c" hint-placeholder-count="2">
+                      <label style="display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none">
+                        <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:99px;border:1.5px solid {{ c.ring }}">{{ c.dot }}</span>
+                        <span style="font-size:14px;font-weight:600;color:{{ c.color }}">{{ c.label }}</span>
+                        <input type="radio" name="cond" checked="{{ c.on }}" onChange="{{ c.select }}" style="position:absolute;opacity:0;width:0;height:0"/>
+                      </label>
+                    </sc-for>
+                  </div>
+                  <label style="display:flex;align-items:center;justify-content:space-between;gap:11px;cursor:pointer;user-select:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border-subtle)">
+                    <span style="font-size:14px;font-weight:600;color:#C7CDE6">Somente em estoque</span>
+                    <span style="position:relative;width:42px;height:24px;border-radius:99px;background:{{ stockTrack }};transition:background .2s"><span style="position:absolute;top:2px;left:{{ stockKnob }};width:20px;height:20px;border-radius:99px;background:#fff;transition:left .2s"></span></span>
+                    <input type="checkbox" checked="{{ stockOnly }}" onChange="{{ toggleStock }}" style="position:absolute;opacity:0;width:0;height:0"/>
+                  </label>
+                </div>
+
+                <a href="https://wa.me/5545998370750" target="_blank" style="display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,var(--navy-700),var(--navy-800));border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px;text-decoration:none">
+                  <img src="assets/feature-suporte.png" alt="" style="width:46px;height:46px;object-fit:contain;flex:0 0 auto"/>
+                  <span><span style="display:block;font-weight:700;color:#fff;font-size:13.5px">Não sabe qual escolher?</span><span style="display:block;color:#AEB6D4;font-size:12.5px;margin-top:2px">Fale com um especialista no WhatsApp</span></span>
+                </a>
+              </aside>
+
+              <!-- GRID COLUMN -->
+              <div>
+                <button class="show-mobile" onClick="{{ openFilters }}" style="width:100%;align-items:center;justify-content:center;gap:9px;height:46px;margin-bottom:14px;border:1.5px solid var(--border-strong);border-radius:12px;background:var(--navy-800);color:#fff;font-weight:700;font-size:14px;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="1" x2="7" y1="14" y2="14"/><line x1="9" x2="15" y1="8" y2="8"/><line x1="17" x2="23" y1="16" y2="16"/></svg>Filtros</button>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px">
+                  <div><h2 style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.3rem,2.2vw,1.6rem);color:#fff;margin:0;letter-spacing:-.02em">Confira nossos modelos</h2><p style="margin:5px 0 0;color:#8E96B8;font-size:13.5px"><span style="color:#C7CDE6;font-weight:700;font-family:var(--font-mono)">{{ resultCount }}</span> de {{ totalCount }} equipamentos disponíveis</p></div>
+                  <label style="display:flex;align-items:center;gap:9px;font-size:13px;color:#8E96B8;font-weight:600">Ordenar
+                    <span style="position:relative;display:inline-flex;align-items:center">
+                      <select value="{{ sort }}" onChange="{{ setSort }}" style="appearance:none;-webkit-appearance:none;height:42px;padding:0 38px 0 15px;border-radius:var(--radius-md);background:var(--navy-800);border:1.5px solid var(--border);color:#fff;font-family:var(--font-sans);font-size:14px;font-weight:600;cursor:pointer;outline:none">
+                        <option value="relevance">Relevância</option>
+                        <option value="price-asc">Menor preço</option>
+                        <option value="price-desc">Maior preço</option>
+                        <option value="hash">Maior hashrate</option>
+                        <option value="profit">Maior rendimento</option>
+                      </select>
+                      <svg style="position:absolute;right:13px;pointer-events:none" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8E96B8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </span>
+                  </label>
+                </div>
+
+                <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:clamp(16px,1.6vw,22px)">
+                  <sc-for list="{{ products }}" as="p" hint-placeholder-count="3">
+                    <article class="card" style="display:flex;flex-direction:column;background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden">
+                      <button onClick="{{ p.onOpen }}" style="position:relative;display:block;border:0;cursor:pointer;padding:18px;aspect-ratio:4/3;background:radial-gradient(120% 120% at 50% 24%,#fff 0%,#E7EAF1 100%);overflow:hidden">
+                        <div style="position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2">
+                          <sc-if value="{{ p.inStock }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:99px;background:var(--green-500);color:#fff;font-size:11.5px;font-weight:700"><span style="width:6px;height:6px;border-radius:99px;background:#fff"></span>{{ p.stockLabel }}</span></sc-if>
+                          <span style="padding:5px 10px;border-radius:99px;background:var(--navy-800);color:#fff;font-size:11.5px;font-weight:700">{{ p.condition }}</span>
+                        </div>
+                        <sc-if value="{{ p.featured }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:12px;right:12px;z-index:2;display:inline-flex;align-items:center;gap:4px;padding:5px 9px;border-radius:99px;background:var(--gradient-brand);color:#fff;font-size:11px;font-weight:700;box-shadow:var(--glow-orange-sm)"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21 8 14 2 9.4h7.6z"/></svg>Destaque</span></sc-if>
+                        {{ p.imgNode }}
+                      </button>
+                      <div style="display:flex;flex-direction:column;gap:13px;padding:17px">
+                        <button onClick="{{ p.onOpen }}" style="text-align:left;background:none;border:0;padding:0;cursor:pointer;font-family:var(--font-display);font-weight:700;font-size:17.5px;line-height:1.18;letter-spacing:-.01em;color:#fff">{{ p.fullName }}</button>
+                        <div style="display:flex;flex-direction:column;gap:1px">
+                          <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border-subtle)"><span style="display:flex;align-items:center;gap:7px;color:#8E96B8;font-size:12.5px;font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6E76A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>Hashrate</span><span style="font-family:var(--font-mono);font-weight:700;font-size:13.5px;color:#fff">{{ p.hashrate }}</span></div>
+                          <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border-subtle)"><span style="display:flex;align-items:center;gap:7px;color:#8E96B8;font-size:12.5px;font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6E76A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Consumo</span><span style="font-family:var(--font-mono);font-weight:700;font-size:13.5px;color:#fff">{{ p.consumption }}</span></div>
+                          <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0"><span style="display:flex;align-items:center;gap:7px;color:#8E96B8;font-size:12.5px;font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6E76A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>Eficiência</span><span style="font-family:var(--font-mono);font-weight:700;font-size:13.5px;color:#fff">{{ p.efficiency }}</span></div>
+                        </div>
+                        <sc-if value="{{ showProfit }}" hint-placeholder-val="{{ true }}">
+                        <div style="display:flex;flex-direction:column;gap:5px;padding:11px 13px;border-radius:var(--radius-md);background:color-mix(in srgb,var(--green-500) 12%,transparent);border:1px solid color-mix(in srgb,var(--green-500) 22%,transparent)">
+                          <div style="display:flex;align-items:center;justify-content:space-between"><span style="display:flex;align-items:center;gap:6px;color:var(--green-500);font-size:12.5px;font-weight:700"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>Rendimento estimado</span><span style="font-family:var(--font-mono);font-weight:700;font-size:14px;color:var(--green-500)">{{ p.dailyRevenue }}<span style="font-size:10.5px;color:#7Fb79e;font-weight:600"> /dia</span></span></div>
+                          <span style="font-size:10.5px;color:#7E9C8E;line-height:1.3">Estimativa — não é rentabilidade garantida.</span>
+                        </div>
+                        </sc-if>
+                        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:8px">
+                          <div style="display:flex;flex-direction:column"><span style="font-family:var(--font-mono);font-size:11px;color:#8E96B8;font-weight:600">à vista no Pix</span><span style="display:flex;align-items:baseline;gap:4px"><span style="font-family:var(--font-sans);font-weight:700;font-size:13px;color:#8E96B8">R$</span><span style="font-family:var(--font-display);font-weight:700;font-size:26px;letter-spacing:-.02em;color:#fff;line-height:1">{{ p.priceVal }}</span></span></div>
+                        </div>
+                        <div style="display:flex;gap:9px;margin-top:1px">
+                          <button onClick="{{ p.onAdd }}" style-hover="filter:brightness(1.07);box-shadow:var(--glow-orange);transform:translateY(-1px)" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;border:0;border-radius:99px;background:var(--gradient-brand);color:#fff;font-family:var(--font-sans);font-weight:700;font-size:14.5px;cursor:pointer;box-shadow:var(--glow-orange-sm);transition:all .16s var(--ease-out)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>Adicionar</button>
+                          <button onClick="{{ p.onOpen }}" style-hover="border-color:var(--orange-400);color:#fff" aria-label="Ver detalhes" style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;flex:0 0 auto;border:1.5px solid var(--border-strong);border-radius:99px;background:transparent;color:#AEB6D4;cursor:pointer;transition:all .16s"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                        </div>
+                      </div>
+                    </article>
+                  </sc-for>
+                </div>
+                </sc-if>
+                <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:50px 20px;background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-xl)">
+                    <img src="assets/about-tall.png" alt="" style="width:150px;height:auto;opacity:.92;margin-bottom:8px"/>
+                    <h3 style="font-family:var(--font-display);font-weight:700;color:#fff;font-size:19px;margin:0">Nenhum equipamento encontrado</h3>
+                    <p style="color:#8E96B8;font-size:14px;margin:8px 0 18px;max-width:34ch">Ajuste os filtros ou fale com a gente — temos mais unidades chegando ao estoque.</p>
+                    <button onClick="{{ clearFilters }}" style="height:46px;padding:0 22px;border:0;border-radius:99px;background:var(--gradient-brand);color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;box-shadow:var(--glow-orange-sm)">Limpar filtros</button>
+                  </div>
+                </sc-if>
+              </div>
+            </section>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isProduct }}" hint-placeholder-val="{{ false }}">
+          <div style="max-width:var(--container-xl);margin:0 auto;padding:6px var(--gutter) 60px">
+            <div style="display:flex;align-items:center;gap:9px;padding:16px 0;font-size:13px;color:#8E96B8;flex-wrap:wrap">
+              <button onClick="{{ goCatalog }}" style="display:inline-flex;align-items:center;gap:7px;background:none;border:0;color:#AEB6D4;font-weight:600;cursor:pointer;font-family:var(--font-sans);font-size:13px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Loja</button>
+              <span style="opacity:.45">/</span><span style="color:#C7CDE6">{{ active.brand }}</span><span style="opacity:.45">/</span><span style="color:#fff;font-weight:600">{{ active.model }}</span>
+            </div>
+
+            <div class="prod-grid" style="display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(22px,3vw,46px);align-items:start">
+              <div class="prod-gallery" style="position:sticky;top:84px;display:flex;flex-direction:column;gap:12px">
+                <div style="position:relative;border-radius:var(--radius-2xl);overflow:hidden;background:radial-gradient(120% 120% at 50% 20%,#fff 0%,#E7EAF1 100%);padding:clamp(28px,4vw,52px);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center">
+                  <div style="position:absolute;top:18px;left:18px;display:flex;gap:7px;flex-wrap:wrap">
+                    <sc-if value="{{ active.inStock }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:99px;background:var(--green-500);color:#fff;font-size:12px;font-weight:700"><span style="width:6px;height:6px;border-radius:99px;background:#fff"></span>{{ active.stockLabel }}</span></sc-if>
+                    <span style="padding:6px 12px;border-radius:99px;background:var(--navy-800);color:#fff;font-size:12px;font-weight:700">{{ active.condition }}</span>
+                  </div>
+                  {{ active.imgNode }}
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 8px;background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-md);text-align:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--orange-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span style="font-size:11.5px;color:#AEB6D4;font-weight:600;line-height:1.2">Testado sob carga</span></div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 8px;background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-md);text-align:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span style="font-size:11.5px;color:#AEB6D4;font-weight:600;line-height:1.2">Garantia 30 dias</span></div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 8px;background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-md);text-align:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BA8F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 18.52 8H14"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg><span style="font-size:11.5px;color:#AEB6D4;font-weight:600;line-height:1.2">Entrega Brasil</span></div>
+                </div>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:18px">
+                <div>
+                  <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px"><span style="padding:5px 11px;border-radius:99px;background:var(--primary-soft);color:var(--orange-400);font-size:12px;font-weight:700">{{ active.brand }}</span><span style="padding:5px 11px;border-radius:99px;background:color-mix(in srgb,var(--gold-400) 16%,transparent);color:var(--gold-300);font-size:12px;font-weight:700">{{ active.algorithm }}</span></div>
+                  <h1 style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.08;letter-spacing:-.02em;color:#fff;margin:0;text-wrap:balance">{{ active.fullName }}</h1>
+                  <p style="font-size:15px;line-height:1.6;color:#AEB6D4;margin:12px 0 0;max-width:52ch">{{ active.short }}</p>
+                </div>
+
+                <div style="background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-xl);padding:20px;display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap">
+                    <div><span style="display:block;font-family:var(--font-mono);font-size:12px;color:#8E96B8;font-weight:600;margin-bottom:3px">à vista no Pix</span><span style="display:flex;align-items:baseline;gap:6px"><span style="font-family:var(--font-sans);font-weight:700;font-size:18px;color:#8E96B8">R$</span><span style="font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,4vw,2.9rem);letter-spacing:-.03em;color:#fff;line-height:1">{{ active.priceVal }}</span></span></div>
+                    <span style="display:inline-flex;align-items:center;gap:6px;color:var(--gold-300);font-size:12.5px;font-weight:700;padding-bottom:6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.8 8 9 4.6-1.2 8-4 8-9V5z"/></svg>Garantia 30 dias</span>
+                  </div>
+                  <div style="display:flex;gap:14px;padding:14px 16px;border-radius:var(--radius-md);background:color-mix(in srgb,var(--green-500) 12%,transparent);border:1px solid color-mix(in srgb,var(--green-500) 24%,transparent);flex-wrap:wrap">
+                    <div style="flex:1;min-width:120px"><span style="display:flex;align-items:center;gap:6px;color:var(--green-500);font-size:12px;font-weight:700;margin-bottom:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>Rendimento diário</span><span style="font-family:var(--font-mono);font-weight:700;font-size:19px;color:var(--green-500)">{{ active.dailyRevenue }}<span style="font-size:12px;color:#7E9C8E"> /dia</span></span></div>
+                    <div style="flex:1;min-width:120px;border-left:1px solid color-mix(in srgb,var(--green-500) 22%,transparent);padding-left:14px"><span style="display:block;color:var(--green-500);font-size:12px;font-weight:700;margin-bottom:4px">Rentabilidade mensal</span><span style="font-family:var(--font-mono);font-weight:700;font-size:19px;color:var(--green-500)">{{ active.monthlyRevenue }}<span style="font-size:12px;color:#7E9C8E"> /mês</span></span></div>
+                  </div>
+                  <p style="margin:0;font-size:11.5px;line-height:1.45;color:#7E879F">Estimativas — não representam rentabilidade garantida. Os valores variam conforme preço do BTC, dificuldade da rede, energia e condições de mercado.</p>
+                </div>
+
+                <div style="display:flex;gap:12px;align-items:stretch;flex-wrap:wrap">
+                  <div style="display:flex;align-items:center;gap:2px;padding:4px;border:1.5px solid var(--border-strong);border-radius:99px;background:var(--navy-800)">
+                    <button onClick="{{ decP }}" aria-label="Diminuir" style="width:40px;height:40px;border:0;border-radius:99px;background:transparent;color:#fff;font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center">−</button>
+                    <span style="min-width:34px;text-align:center;font-family:var(--font-mono);font-weight:700;font-size:17px;color:#fff">{{ pqty }}</span>
+                    <button onClick="{{ incP }}" aria-label="Aumentar" style="width:40px;height:40px;border:0;border-radius:99px;background:transparent;color:#fff;font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center">+</button>
+                  </div>
+                  <button onClick="{{ addActive }}" style-hover="filter:brightness(1.07);box-shadow:var(--glow-orange);transform:translateY(-1px)" style="flex:1;min-width:200px;display:inline-flex;align-items:center;justify-content:center;gap:9px;height:54px;border:0;border-radius:99px;background:var(--gradient-brand);color:#fff;font-family:var(--font-sans);font-weight:700;font-size:16px;cursor:pointer;box-shadow:var(--glow-orange-sm);transition:all .16s var(--ease-out)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>Adicionar ao carrinho</button>
+                </div>
+                <a href="https://wa.me/5545998370750" target="_blank" style-hover="background:rgba(37,211,102,.16);border-color:rgba(37,211,102,.6)" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;height:50px;border-radius:99px;background:rgba(37,211,102,.1);border:1.5px solid rgba(37,211,102,.4);color:#3ee47e;font-weight:700;font-size:15px;text-decoration:none;transition:all .16s"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>Tirar dúvida sobre este equipamento</a>
+                <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:4px">
+                  <span style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#8E96B8;font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green-500)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pagamento seguro via Pix</span>
+                  <span style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#8E96B8;font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green-500)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Confirmação automática</span>
+                  <span style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#8E96B8;font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green-500)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Suporte especializado</span>
+                </div>
+              </div>
+            </div>
+
+            <section style="margin-top:clamp(36px,5vw,56px)">
+              <h2 style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.3rem,2.2vw,1.6rem);color:#fff;margin:0 0 16px;letter-spacing:-.02em">Dados técnicos</h2>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px">
+                <sc-for list="{{ active.specs }}" as="s" hint-placeholder-count="9">
+                  <div style="background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 15px"><span style="display:block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#7E87AB;margin-bottom:6px">{{ s.k }}</span><span style="font-family:var(--font-mono);font-weight:700;font-size:15.5px;color:#fff">{{ s.v }}</span></div>
+                </sc-for>
+              </div>
+            </section>
+
+            <section style="margin-top:clamp(30px,4vw,44px);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,2.5vw,28px)" class="prod-grid">
+              <div style="background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-xl);padding:clamp(20px,3vw,30px)">
+                <h2 style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.2rem,2vw,1.45rem);color:#fff;margin:0 0 12px;letter-spacing:-.02em">Sobre o equipamento</h2>
+                <p style="font-size:15px;line-height:1.7;color:#C7CDE6;margin:0 0 14px">{{ active.desc }}</p>
+                <p style="font-size:13px;line-height:1.6;color:#8E96B8;margin:0;padding:13px 15px;background:var(--navy-900);border-radius:var(--radius-md);border:1px solid var(--border-subtle)">Este produto pode ser usado ou revisado, podendo conter marcas estéticas de uso, sem prejuízo das condições funcionais informadas na descrição.</p>
+              </div>
+              <div style="background:linear-gradient(150deg,color-mix(in srgb,var(--green-500) 16%,var(--navy-800)),var(--navy-800));border:1px solid color-mix(in srgb,var(--green-500) 26%,transparent);border-radius:var(--radius-xl);padding:clamp(20px,3vw,30px);display:flex;flex-direction:column">
+                <span style="display:inline-flex;align-items:center;gap:7px;color:var(--green-500);font-size:13px;font-weight:700;margin-bottom:14px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>Rentabilidade estimada</span>
+                <div style="display:flex;gap:24px;margin-bottom:16px;flex-wrap:wrap">
+                  <div><span style="display:block;font-size:12px;color:#9FC3B2;font-weight:600;margin-bottom:3px">Por dia</span><span style="font-family:var(--font-mono);font-weight:700;font-size:clamp(1.5rem,2.6vw,1.9rem);color:var(--green-500);letter-spacing:-.01em">{{ active.dailyRevenue }}</span></div>
+                  <div><span style="display:block;font-size:12px;color:#9FC3B2;font-weight:600;margin-bottom:3px">Por mês</span><span style="font-family:var(--font-mono);font-weight:700;font-size:clamp(1.5rem,2.6vw,1.9rem);color:var(--green-500);letter-spacing:-.01em">{{ active.monthlyRevenue }}</span></div>
+                </div>
+                <p style="font-size:11.5px;line-height:1.5;color:#8FA89B;margin:auto 0 0">Os valores de rentabilidade são estimativas e podem variar conforme preço do BTC, dificuldade da rede, pool utilizada, tarifa de energia, uptime do equipamento, taxas operacionais e condições de mercado. A Cat Miner não garante rentabilidade futura.</p>
+              </div>
+            </section>
+
+            <section style="margin-top:clamp(36px,5vw,56px)">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:16px"><h2 style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.3rem,2.2vw,1.6rem);color:#fff;margin:0;letter-spacing:-.02em">Você também pode gostar</h2><button onClick="{{ goCatalog }}" style="background:none;border:0;color:var(--orange-400);font-weight:700;font-size:13.5px;cursor:pointer;font-family:var(--font-sans)">Ver todos →</button></div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px">
+                <sc-for list="{{ related }}" as="p" hint-placeholder-count="2">
+                  <article class="card" style="display:flex;flex-direction:column;background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden">
+                    <button onClick="{{ p.onOpen }}" style="position:relative;border:0;cursor:pointer;padding:16px;aspect-ratio:4/3;background:radial-gradient(120% 120% at 50% 24%,#fff,#E7EAF1);overflow:hidden">{{ p.imgNode }}</button>
+                    <div style="padding:15px;display:flex;flex-direction:column;gap:11px">
+                      <button onClick="{{ p.onOpen }}" style="text-align:left;background:none;border:0;padding:0;cursor:pointer;font-family:var(--font-display);font-weight:700;font-size:15.5px;color:#fff;line-height:1.2">{{ p.fullName }}</button>
+                      <div style="display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:12.5px;color:#8E96B8"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6E76A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>{{ p.hashrate }}</div>
+                      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:1px"><span style="display:flex;align-items:baseline;gap:3px"><span style="font-family:var(--font-sans);font-weight:700;font-size:12px;color:#8E96B8">R$</span><span style="font-family:var(--font-display);font-weight:700;font-size:20px;color:#fff;letter-spacing:-.02em">{{ p.priceVal }}</span></span><button onClick="{{ p.onOpen }}" style-hover="border-color:var(--orange-400);color:#fff" style="height:38px;padding:0 16px;border:1.5px solid var(--border-strong);border-radius:99px;background:transparent;color:#AEB6D4;font-weight:700;font-size:13px;cursor:pointer;transition:all .15s">Ver</button></div>
+                    </div>
+                  </article>
+                </sc-for>
+              </div>
+            </section>
+          </div>
+          </sc-if>
+        </main>
+
+        <x-import component-from-global-scope="CatMinerDesignSystem_26514a.Footer" dc-props="{{ footerProps }}" hint-size="100%,320px"></x-import>
+      </div>
+
+      <!-- CART DRAWER -->
+      <div class="cartov {{ cartCls }}" onClick="{{ closeCart }}">
+        <aside class="cartpanel" onClick="{{ stopProp }}" role="dialog" aria-label="Carrinho">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 20px;border-bottom:1px solid var(--border-subtle);flex:0 0 auto">
+            <sc-if value="{{ isStepCart }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:18px;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--orange-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>Seu carrinho</span></sc-if>
+            <sc-if value="{{ isStepPix }}" hint-placeholder-val="{{ false }}"><button onClick="{{ backToCart }}" style="display:inline-flex;align-items:center;gap:9px;background:none;border:0;color:#fff;font-family:var(--font-display);font-weight:700;font-size:18px;cursor:pointer"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#AEB6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Pagamento Pix</button></sc-if>
+            <sc-if value="{{ isStepDone }}" hint-placeholder-val="{{ false }}"><span style="font-family:var(--font-display);font-weight:700;font-size:18px;color:#fff">Pedido confirmado</span></sc-if>
+            <button onClick="{{ closeCart }}" aria-label="Fechar" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:var(--navy-800);color:#AEB6D4;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+          </div>
+
+          <div class="cartscroll" style="flex:1;overflow-y:auto;padding:18px 20px">
+            <sc-if value="{{ isStepCart }}" hint-placeholder-val="{{ true }}">
+              <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:30px 10px">
+                  <img src="assets/about-tall.png" alt="" style="width:150px;height:auto;opacity:.9"/>
+                  <h3 style="font-family:var(--font-display);font-weight:700;color:#fff;font-size:18px;margin:6px 0 0">Seu carrinho está vazio</h3>
+                  <p style="color:#8E96B8;font-size:13.5px;margin:8px 0 18px;max-width:30ch">Explore nossos ASICs revisados e adicione um equipamento para começar.</p>
+                  <button onClick="{{ goShop }}" style="height:46px;padding:0 22px;border:0;border-radius:99px;background:var(--gradient-brand);color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;box-shadow:var(--glow-orange-sm)">Ver equipamentos</button>
+                </div>
+              </sc-if>
+              <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:11px">
+                  <sc-for list="{{ cartItems }}" as="it" hint-placeholder-count="2">
+                    <div style="display:flex;gap:13px;padding:12px;background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-lg)">
+                      <div style="flex:0 0 auto;width:72px;height:72px;border-radius:var(--radius-md);background:radial-gradient(120% 120% at 50% 30%,#fff,#E7EAF1);display:flex;align-items:center;justify-content:center;padding:8px">{{ it.imgNode }}</div>
+                      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px"><span style="font-family:var(--font-display);font-weight:700;font-size:14px;color:#fff;line-height:1.2">{{ it.fullName }}</span><button onClick="{{ it.onRemove }}" aria-label="Remover" style="flex:0 0 auto;width:26px;height:26px;border:0;border-radius:8px;background:transparent;color:#6E76A0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                          <div style="display:flex;align-items:center;gap:1px;padding:3px;border:1.5px solid var(--border-strong);border-radius:99px">
+                            <button onClick="{{ it.onDec }}" aria-label="Menos" style="width:28px;height:28px;border:0;border-radius:99px;background:transparent;color:#fff;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center">−</button>
+                            <span style="min-width:24px;text-align:center;font-family:var(--font-mono);font-weight:700;font-size:14px;color:#fff">{{ it.qty }}</span>
+                            <button onClick="{{ it.onInc }}" aria-label="Mais" style="width:28px;height:28px;border:0;border-radius:99px;background:transparent;color:#fff;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center">+</button>
+                          </div>
+                          <span style="display:flex;align-items:baseline;gap:3px"><span style="font-family:var(--font-sans);font-size:11px;color:#8E96B8;font-weight:700">R$</span><span style="font-family:var(--font-mono);font-weight:700;font-size:15px;color:#fff">{{ it.lineVal }}</span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-for>
+                  <a href="https://wa.me/5545998370750" target="_blank" style="display:flex;align-items:center;gap:9px;margin-top:4px;padding:11px 13px;border-radius:var(--radius-md);background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.28);color:#3ee47e;font-size:12.5px;font-weight:600;text-decoration:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>Dúvidas antes de comprar? Fale com um especialista</a>
+                </div>
+              </sc-if>
+            </sc-if>
+
+            <sc-if value="{{ isStepPix }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:16px">
+                <div style="text-align:center"><p style="margin:0;color:#AEB6D4;font-size:14px;line-height:1.5">Falta pouco! Escaneie o QR Code ou copie o código Pix.<br>A confirmação é <span style="color:#fff;font-weight:700">automática</span> após o pagamento.</p></div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-md)"><span style="font-size:12.5px;color:#8E96B8;font-weight:600">Pedido</span><span style="font-family:var(--font-mono);font-weight:700;color:#fff;font-size:14px">{{ orderNumber }}</span></div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px;background:var(--navy-800);border:1px solid var(--border);border-radius:var(--radius-lg)">
+                  {{ orderQrNode }}
+                  <div style="text-align:center"><span style="display:block;font-size:12px;color:#8E96B8;font-weight:600">Valor total</span><span style="display:flex;align-items:baseline;gap:4px;justify-content:center"><span style="font-family:var(--font-sans);font-weight:700;font-size:15px;color:#8E96B8">R$</span><span style="font-family:var(--font-display);font-weight:700;font-size:28px;color:#fff;letter-spacing:-.02em">{{ cartTotalVal }}</span></span></div>
+                </div>
+                <div>
+                  <span style="display:block;font-size:12px;font-weight:700;color:#8E96B8;margin-bottom:7px">Pix copia e cola</span>
+                  <div style="display:flex;gap:8px;align-items:stretch">
+                    <div style="flex:1;min-width:0;padding:11px 13px;background:var(--navy-950);border:1px solid var(--border);border-radius:var(--radius-md);font-family:var(--font-mono);font-size:11.5px;color:#AEB6D4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;align-items:center">{{ orderCode }}</div>
+                    <button onClick="{{ copyPix }}" style="flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;padding:0 16px;border:0;border-radius:var(--radius-md);background:var(--gradient-brand);color:#fff;font-weight:700;font-size:13px;cursor:pointer;box-shadow:var(--glow-orange-sm)">
+                      <sc-if value="{{ copied }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Copiado!</sc-if>
+                      <sc-if value="{{ notCopied }}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copiar</sc-if>
+                    </button>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:13px 15px;background:color-mix(in srgb,var(--gold-400) 12%,transparent);border:1px solid color-mix(in srgb,var(--gold-400) 26%,transparent);border-radius:var(--radius-md)"><span class="statusdot" style="width:9px;height:9px;border-radius:99px;background:var(--gold-400);flex:0 0 auto"></span><span style="font-size:13px;color:var(--gold-300);font-weight:700;flex:1">Aguardando pagamento</span><span style="font-family:var(--font-mono);font-size:12px;color:#8E96B8">expira em 29:48</span></div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isStepDone }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 10px">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:74px;height:74px;border-radius:99px;background:color-mix(in srgb,var(--green-500) 18%,transparent);color:var(--green-500);margin-bottom:6px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                <h3 style="font-family:var(--font-display);font-weight:700;color:#fff;font-size:21px;margin:8px 0 0">Pagamento confirmado!</h3>
+                <p style="color:#AEB6D4;font-size:14px;margin:9px 0 0;max-width:32ch;line-height:1.55">Recebemos seu pagamento do pedido <span style="font-family:var(--font-mono);color:#fff;font-weight:700">{{ orderNumber }}</span>. Nossa equipe já está preparando o envio e entrará em contato pelo WhatsApp.</p>
+                <div style="display:flex;flex-direction:column;gap:10px;width:100%;margin-top:22px">
+                  <a href="https://wa.me/5545998370750" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;height:48px;border-radius:99px;background:#25D366;color:#fff;font-weight:700;font-size:15px;text-decoration:none"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>Acompanhar no WhatsApp</a>
+                  <button onClick="{{ resetShop }}" style="height:48px;border:1.5px solid var(--border-strong);border-radius:99px;background:transparent;color:#fff;font-weight:700;font-size:15px;cursor:pointer">Continuar comprando</button>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+
+          <sc-if value="{{ showCartFooter }}" hint-placeholder-val="{{ false }}">
+            <div style="flex:0 0 auto;padding:17px 20px;border-top:1px solid var(--border-subtle);background:var(--navy-950);display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;align-items:center;justify-content:space-between"><span style="color:#AEB6D4;font-size:14px">Subtotal ({{ cartCount }} itens)</span><span style="font-family:var(--font-mono);font-weight:700;color:#fff;font-size:15px">R$ {{ cartTotalVal }}</span></div>
+              <div style="display:flex;align-items:center;justify-content:space-between"><span style="color:#8E96B8;font-size:13px">Frete</span><span style="color:#8E96B8;font-size:13px">Calculado no checkout</span></div>
+              <div style="display:flex;align-items:flex-end;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border-subtle)"><span style="color:#fff;font-weight:700;font-size:15px">Total</span><span style="display:flex;align-items:baseline;gap:4px"><span style="font-family:var(--font-sans);font-weight:700;font-size:14px;color:#8E96B8">R$</span><span style="font-family:var(--font-display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-.02em">{{ cartTotalVal }}</span></span></div>
+              <button onClick="{{ startCheckout }}" style-hover="filter:brightness(1.07);box-shadow:var(--glow-orange);transform:translateY(-1px)" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;height:54px;border:0;border-radius:99px;background:var(--gradient-brand);color:#fff;font-weight:700;font-size:16px;cursor:pointer;box-shadow:var(--glow-orange-sm);transition:all .16s var(--ease-out)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>Gerar pagamento Pix</button>
+              <p style="margin:0;text-align:center;font-size:11px;color:#7E879F;line-height:1.4">Ao finalizar você será direcionado ao pagamento via Pix. O pedido é confirmado automaticamente após a aprovação.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isStepPix }}" hint-placeholder-val="{{ false }}">
+            <div style="flex:0 0 auto;padding:17px 20px;border-top:1px solid var(--border-subtle);background:var(--navy-950);display:flex;flex-direction:column;gap:10px">
+              <button onClick="{{ confirmPaid }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;height:52px;border:0;border-radius:99px;background:var(--green-500);color:#fff;font-weight:700;font-size:15.5px;cursor:pointer">Já fiz o pagamento</button>
+              <p style="margin:0;text-align:center;font-size:12px;color:#8E96B8">Teve algum problema? <a href="https://wa.me/5545998370750" target="_blank" style="color:var(--orange-400);font-weight:700;text-decoration:none">Fale no WhatsApp</a></p>
+            </div>
+          </sc-if>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEWPORT TOGGLE -->
+  <div style="position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:4px;padding:5px;border-radius:99px;background:color-mix(in srgb,var(--navy-800) 92%,transparent);border:1px solid var(--border-strong);box-shadow:0 18px 40px -12px rgba(0,0,0,.7);backdrop-filter:blur(12px)">
+    <button onClick="{{ setDesktop }}" style="display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 15px;border:0;border-radius:99px;cursor:pointer;font-family:var(--font-sans);font-weight:700;font-size:12.5px;background:{{ deskBg }};color:{{ deskColor }};transition:all .18s"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>Desktop</button>
+    <button onClick="{{ setMobile }}" style="display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 15px;border:0;border-radius:99px;cursor:pointer;font-family:var(--font-sans);font-weight:700;font-size:12.5px;background:{{ mobBg }};color:{{ mobColor }};transition:all .18s"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg>Mobile</button>
+  </div>
+
+  <!-- TOAST -->
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div class="toast" key="{{ toastKey }}" style="position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:11px;padding:13px 18px;border-radius:14px;background:var(--navy-700);border:1px solid var(--border-strong);box-shadow:0 18px 40px -12px rgba(0,0,0,.7);max-width:90vw">
+      <span style="display:inline-flex;width:30px;height:30px;border-radius:9px;align-items:center;justify-content:center;background:var(--green-500);color:#fff;flex:0 0 auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <span style="font-size:13.5px;color:#E7E9F2;font-weight:600">{{ toast }}</span>
+      <button onClick="{{ openCart }}" style="background:none;border:0;color:var(--orange-400);font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font-sans);white-space:nowrap">Ver carrinho</button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Laranja → Dourado&quot;,&quot;Laranja sólido&quot;,&quot;Dourado&quot;],&quot;default&quot;:&quot;Laranja → Dourado&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Aparência&quot;},&quot;showProfit&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Conteúdo&quot;},&quot;showMascot&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Conteúdo&quot;}}">
+class Component extends DCLogic {
+  state = {
+    device: 'desktop',
+    view: 'catalog',
+    activeId: null,
+    pqty: 1,
+    search: '',
+    brands: [],
+    priceMax: 8000,
+    hashMin: 0,
+    cond: 'all',
+    stockOnly: false,
+    sort: 'relevance',
+    filtersOpen: false,
+    cartOpen: false,
+    cart: [],
+    step: 'cart',
+    order: null,
+    copied: false,
+    toast: null,
+    toastKey: 0,
+  };
+
+  PRODUCTS = [
+    { id:'s19jproplus', fullName:'Antminer S19j Pro+ (120 TH)', brand:'Bitmain', model:'Antminer S19j Pro+', image:'assets/product-s19j-pro-plus.png',
+      short:'ASIC usado/revisado para mineração com 120 TH/s.',
+      desc:'O Antminer S19j Pro+ entrega 120 TH/s com eficiência de 28 J/TH, equilibrando hashrate alto e consumo controlado. Unidade usada e revisada pela nossa equipe, testada sob carga antes do envio.',
+      priceCents:749900, stock:1, condition:'Usado revisado', voltage:'220v', warrantyDays:30, algorithm:'SHA-256',
+      hashrate:'120 TH/s', hashNum:120, consumption:'3.360 W', consNum:3360, efficiency:'28 J/TH',
+      dailyRevenue:'R$ 32,83', dailyNum:32.83, monthlyRevenue:'R$ 984,77', monthlyNum:984.77, featured:true },
+    { id:'s19jpro', fullName:'Bitmain S19J Pro (95 TH)', brand:'Bitmain', model:'S19J Pro', image:'assets/product-s19j-pro.jpg',
+      short:'ASIC usado/revisado para mineração com 95 TH/s.',
+      desc:'O S19j Pro é um dos mineradores SHA-256 mais consolidados do mercado: 95 TH/s de hashrate estável e manutenção simples. Unidade usada e revisada, testada sob carga.',
+      priceCents:389900, stock:2, condition:'Usado revisado', voltage:'220v', warrantyDays:30, algorithm:'SHA-256',
+      hashrate:'95 TH/s', hashNum:95, consumption:'3.250 W', consNum:3250, efficiency:'34 J/TH',
+      dailyRevenue:'R$ 24,76', dailyNum:24.76, monthlyRevenue:'R$ 742,78', monthlyNum:742.78, featured:false },
+    { id:'m50', fullName:'Whatsminer M50 (120 TH)', brand:'MicroBT', model:'Whatsminer M50', image:'assets/product-whatsminer-m50.png',
+      short:'ASIC usado/revisado Whatsminer com 120 TH/s.',
+      desc:'O Whatsminer M50 oferece 120 TH/s com a robustez característica da MicroBT, ideal para operações que priorizam disponibilidade. Unidade usada e revisada, testada sob carga.',
+      priceCents:599900, stock:1, condition:'Usado revisado', voltage:'220v', warrantyDays:30, algorithm:'SHA-256',
+      hashrate:'120 TH/s', hashNum:120, consumption:'3.360 W', consNum:3360, efficiency:'28 J/TH',
+      dailyRevenue:'R$ 32,83', dailyNum:32.83, monthlyRevenue:'R$ 984,77', monthlyNum:984.77, featured:true },
+  ];
+
+  n2(v){ return v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  priceVal(cents){ return this.n2(cents/100); }
+  brl(cents){ return 'R$ ' + this.n2(cents/100); }
+  product(id){ return this.PRODUCTS.find(p=>p.id===id) || null; }
+
+  toast(msg){ const k=this.state.toastKey+1; this.setState({toast:msg, toastKey:k}); clearTimeout(this._tt); this._tt=setTimeout(()=>{ if(this.state.toastKey===k) this.setState({toast:null}); },2600); }
+
+  addToCart(id){
+    const cart=[...this.state.cart]; const ex=cart.find(c=>c.id===id);
+    if(ex) ex.qty+=1; else cart.push({id,qty:1});
+    const p=this.product(id);
+    this.setState({cart}); this.toast(p.model+' adicionado ao carrinho');
+  }
+  setItemQty(id,d){ let cart=this.state.cart.map(c=>c.id===id?{...c,qty:c.qty+d}:c).filter(c=>c.qty>0); this.setState({cart}); }
+  removeItem(id){ this.setState({cart:this.state.cart.filter(c=>c.id!==id)}); }
+
+  openProduct(id){ this.setState({view:'product', activeId:id, pqty:1}); this._toTop(); }
+  goCatalog(){ this.setState({view:'catalog'}); this._toTop(); }
+  _toTop(){ const s=document.querySelector('.scroll'); if(s) s.scrollTo({top:0}); }
+
+  openCart(){ this.setState({cartOpen:true, step:'cart'}); }
+  closeCart(){ this.setState({cartOpen:false}); }
+
+  makeQR(seed){
+    const n=29; let s=0; for(const c of String(seed)) s=(s*31+c.charCodeAt(0))>>>0;
+    const rnd=()=>{ s=(s*1664525+1013904223)>>>0; return s/4294967296; };
+    const fin=(r,c,R,C)=> (R>=r&&R<r+7&&C>=c&&C<c+7) ? ((R===r||R===r+6||C===c||C===c+6)||(R>=r+2&&R<=r+4&&C>=c+2&&C<=c+4)) : null;
+    let rects='';
+    for(let R=0;R<n;R++) for(let C=0;C<n;C++){
+      let v=null;
+      for(const f of [[0,0],[0,n-7],[n-7,0]]){ const r=fin(f[0],f[1],R,C); if(r!==null){v=r;break;} }
+      if(v===null){ const near=(R<8&&C<8)||(R<8&&C>=n-8)||(R>=n-8&&C<8); v=near?false:rnd()>0.52; }
+      if(v) rects+='<rect x="'+C+'" y="'+R+'" width="1" height="1"/>';
+    }
+    const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+n+' '+n+'" shape-rendering="crispEdges"><rect width="'+n+'" height="'+n+'" fill="#fff"/><g fill="#0B0F22">'+rects+'</g></svg>';
+    return 'data:image/svg+xml;base64,'+btoa(svg);
+  }
+  startCheckout(){
+    const num='CM-2026-'+String(4100+Math.floor(Math.random()*5800));
+    const code='00020126580014BR.GOV.BCB.PIX0136a1b2c3d4-'+num.toLowerCase()+'520400005303986540'+(this.cartTotalCents()/100).toFixed(2)+'5802BR5909CAT MINER6008CASCAVEL62070503***6304F1A2';
+    this.setState({step:'pix', order:{number:num, code, qr:this.makeQR(num)}, copied:false});
+  }
+  copyPix(){ const c=this.state.order&&this.state.order.code; if(c&&navigator.clipboard){ navigator.clipboard.writeText(c).catch(()=>{}); } this.setState({copied:true}); clearTimeout(this._cp); this._cp=setTimeout(()=>this.setState({copied:false}),2200); }
+  confirmPaid(){ this.setState({step:'done', cart:[]}); }
+  resetCart(){ this.setState({cartOpen:false, step:'cart', order:null}); }
+
+  cartTotalCents(){ return this.state.cart.reduce((s,c)=>{ const p=this.product(c.id); return s+(p?p.priceCents*c.qty:0); },0); }
+
+  filtered(){
+    const st=this.state;
+    let list=this.PRODUCTS.filter(p=>{
+      if(st.brands.length && !st.brands.includes(p.brand)) return false;
+      if(p.priceCents/100 > st.priceMax) return false;
+      if(p.hashNum < st.hashMin) return false;
+      if(st.stockOnly && p.stock<=0) return false;
+      if(st.search){ const q=st.search.toLowerCase(); if(!((p.fullName+' '+p.brand+' '+p.model+' '+p.hashrate).toLowerCase().includes(q))) return false; }
+      return true;
+    });
+    const by=st.sort;
+    list=[...list].sort((a,b)=>{
+      if(by==='price-asc') return a.priceCents-b.priceCents;
+      if(by==='price-desc') return b.priceCents-a.priceCents;
+      if(by==='hash') return b.hashNum-a.hashNum;
+      if(by==='profit') return b.dailyNum-a.dailyNum;
+      return (b.featured?1:0)-(a.featured?1:0) || b.hashNum-a.hashNum;
+    });
+    return list;
+  }
+
+  renderVals(){
+    const st=this.state;
+    const accentMode=this.props.accentMode||'Laranja → Dourado';
+    const accentCls=accentMode==='Laranja sólido'?'acc-orange':(accentMode==='Dourado'?'acc-gold':'');
+    const imgNode=(src,alt,st2,cls)=>React.createElement('img',{src,alt,className:cls,style:st2});
+    const products=this.filtered().map(p=>({
+      ...p,
+      priceVal:this.priceVal(p.priceCents),
+      inStock:p.stock>0,
+      stockLabel:p.stock+(p.stock>1?' em estoque':' em estoque'),
+      onAdd:()=>this.addToCart(p.id),
+      onOpen:()=>this.openProduct(p.id),
+      imgNode:imgNode(p.image,p.fullName,{position:'relative',width:'100%',height:'100%',objectFit:'contain',zIndex:1},'card__img'),
+    }));
+    const counts={}; this.PRODUCTS.forEach(p=>counts[p.brand]=(counts[p.brand]||0)+1);
+    const brandOptions=['Bitmain','MicroBT'].map(b=>{
+      const on=st.brands.includes(b);
+      return { label:b, count:counts[b]||0, on,
+        onCls:on?'is-on':'', color:on?'#fff':'#C7CDE6',
+        boxBg:on?'var(--orange-500)':'transparent',
+        check:on?React.createElement('svg',{width:13,height:13,viewBox:'0 0 24 24',fill:'none',stroke:'#fff',strokeWidth:3,strokeLinecap:'round',strokeLinejoin:'round'},React.createElement('path',{d:'M20 6 9 17l-5-5'})):null,
+        toggle:()=>{ const set=new Set(st.brands); set.has(b)?set.delete(b):set.add(b); this.setState({brands:[...set]}); } };
+    });
+    const condOptions=[{v:'all',label:'Todas as condições'},{v:'revisado',label:'Usado revisado'}].map(c=>{
+      const on=st.cond===c.v;
+      return { label:c.label, on, color:on?'#fff':'#C7CDE6', ring:on?'var(--orange-500)':'var(--border-strong)',
+        dot:on?React.createElement('span',{style:{width:'10px',height:'10px',borderRadius:'99px',background:'var(--gradient-brand)'}}):null,
+        select:()=>this.setState({cond:c.v}) };
+    });
+
+    const cartItems=st.cart.map(c=>{ const p=this.product(c.id); return { ...p, qty:c.qty, lineVal:this.priceVal(p.priceCents*c.qty),
+      imgNode:imgNode(p.image,p.fullName,{maxWidth:'100%',maxHeight:'100%',objectFit:'contain'}),
+      onInc:()=>this.setItemQty(p.id,1), onDec:()=>this.setItemQty(p.id,-1), onRemove:()=>this.removeItem(p.id) }; });
+    const cartCount=st.cart.reduce((s,c)=>s+c.qty,0);
+    const totalCents=this.cartTotalCents();
+    const ap=this.product(st.activeId);
+    const related = ap ? this.PRODUCTS.filter(p=>p.id!==ap.id).map(p=>({...p, priceVal:this.priceVal(p.priceCents), onOpen:()=>this.openProduct(p.id), onAdd:()=>this.addToCart(p.id), imgNode:imgNode(p.image,p.fullName,{width:'100%',height:'100%',objectFit:'contain'},'card__img')})) : [];
+    const active = ap ? {
+      ...ap, priceVal:this.priceVal(ap.priceCents), inStock:ap.stock>0, stockLabel:ap.stock+' em estoque',
+      imgNode:imgNode(ap.image,ap.fullName,{position:'relative',width:'100%',height:'100%',objectFit:'contain'}),
+      specs:[
+        {k:'Marca',v:ap.brand},{k:'Modelo',v:ap.model},{k:'Algoritmo',v:ap.algorithm},
+        {k:'Hashrate',v:ap.hashrate},{k:'Consumo',v:ap.consumption},{k:'Eficiência',v:ap.efficiency},
+        {k:'Tensão',v:ap.voltage},{k:'Condição',v:ap.condition},{k:'Garantia',v:ap.warrantyDays+' dias'},
+      ],
+    } : null;
+
+    const pillBg='var(--gradient-brand)', off='transparent', offC='#AEB6D4', onC='#fff';
+    return {
+      deviceCls: st.device==='mobile'?'is-mobile':'',
+      setDesktop:()=>this.setState({device:'desktop'}), setMobile:()=>this.setState({device:'mobile'}),
+      deskBg: st.device==='desktop'?pillBg:off, deskColor: st.device==='desktop'?onC:offC,
+      mobBg: st.device==='mobile'?pillBg:off, mobColor: st.device==='mobile'?onC:offC,
+      accentCls, showProfit: this.props.showProfit!==false, showMascot: this.props.showMascot!==false,
+
+      isCatalog: st.view==='catalog', isProduct: st.view==='product',
+      goCatalog:()=>this.goCatalog(),
+      active, related,
+      pqty:st.pqty, incP:()=>this.setState({pqty:st.pqty+1}), decP:()=>this.setState({pqty:Math.max(1,st.pqty-1)}),
+      addActive:()=>{ if(!ap) return; const cart=[...st.cart]; const ex=cart.find(c=>c.id===ap.id); if(ex) ex.qty+=st.pqty; else cart.push({id:ap.id,qty:st.pqty}); this.setState({cart}); this.toast(ap.model+' adicionado ao carrinho'); },
+      filtersOpen:st.filtersOpen, filtersCls:st.filtersOpen?'is-open':'', openFilters:()=>this.setState({filtersOpen:true}), closeFilters:()=>this.setState({filtersOpen:false}),
+
+      search:st.search, setSearch:(e)=>this.setState({search:e.target.value}),
+      brandOptions, condOptions,
+      priceMax:st.priceMax, setPriceMax:(e)=>this.setState({priceMax:+e.target.value}), priceMaxLabel:'R$ '+(+st.priceMax).toLocaleString('pt-BR'),
+      hashMin:st.hashMin, setHashMin:(e)=>this.setState({hashMin:+e.target.value}), hashMinLabel:st.hashMin+' TH',
+      stockOnly:st.stockOnly, toggleStock:(e)=>this.setState({stockOnly:e.target.checked}),
+      stockTrack: st.stockOnly?'var(--gradient-brand)':'var(--navy-600)', stockKnob: st.stockOnly?'20px':'2px',
+      sort:st.sort, setSort:(e)=>this.setState({sort:e.target.value}),
+      hasFilters: st.brands.length>0||st.priceMax<8000||st.hashMin>0||st.cond!=='all'||st.stockOnly||st.search!=='',
+      clearFilters:()=>this.setState({brands:[],priceMax:8000,hashMin:0,cond:'all',stockOnly:false,search:''}),
+
+      products, resultCount:products.length, totalCount:this.PRODUCTS.length,
+      hasResults:products.length>0, noResults:products.length===0,
+
+      hasCart:cartCount>0, cartCount, openCart:()=>this.openCart(),
+      toast:st.toast, toastKey:String(st.toastKey),
+
+      cartOpen:st.cartOpen, cartCls:st.cartOpen?'is-open':'', closeCart:()=>this.closeCart(),
+      cartItems, cartEmpty:cartItems.length===0,
+      cartTotalVal:this.priceVal(totalCents),
+      step:st.step, isStepCart:st.step==='cart', isStepPix:st.step==='pix', isStepDone:st.step==='done',
+      startCheckout:()=>this.startCheckout(), backToCart:()=>this.setState({step:'cart'}),
+      copied:st.copied, notCopied:!st.copied, copyPix:()=>this.copyPix(), confirmPaid:()=>this.confirmPaid(),
+      showCartFooter: st.step==='cart' && cartItems.length>0, stopProp:(e)=>e.stopPropagation(),
+      resetShop:()=>{ this.resetCart(); this.goCatalog(); },
+      goShop:()=>{ this.closeCart(); this.goCatalog(); },
+      orderNumber: st.order?st.order.number:'', orderCode: st.order?st.order.code:'',
+      orderQrNode: st.order?imgNode(st.order.qr,'QR Code Pix',{width:'186px',height:'186px',borderRadius:'12px',background:'#fff',padding:'8px'}):null,
+
+      footerProps:{
+        tagline:'A maior fornecedora de máquinas ASICs usadas do Brasil. Equipamentos testados, revisados e prontos para minerar.',
+        email:'catminer@support.com.br',
+        whatsappHref:'https://wa.me/5545998370750',
+        instagramHref:'https://www.instagram.com/catminerr/',
+        facebookHref:'https://web.facebook.com/profile.php?id=61577801548690',
+        copyright:'© 2026 Cat Miner · Pagamentos via Pix',
+        columns:[
+          {title:'Loja',links:[{label:'Todos os equipamentos',href:'#'},{label:'Bitmain Antminer',href:'#'},{label:'Whatsminer',href:'#'},{label:'Em estoque',href:'#'}]},
+          {title:'Empresa',links:[{label:'Sobre a Cat Miner',href:'#'},{label:'Como funciona',href:'#'},{label:'Notícias',href:'#'}]},
+          {title:'Suporte',links:[{label:'Falar no WhatsApp',href:'https://wa.me/5545998370750'},{label:'Garantia de 30 dias',href:'#'},{label:'Entrega para todo Brasil',href:'#'}]},
+        ],
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
